@@ -1,0 +1,19 @@
+{
+  "generator-jhipster": {
+    "baseName": "demo",
+    "packageName": "com.demo",
+    "packageFolder": "com/demo",
+    "authenticationType": "xauth",
+    "hibernateCache": "ehcache",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "useCompass": false,
+    "buildTool": "maven",
+    "frontendBuilder": "grunt",
+    "javaVersion": "7",
+    "rememberMeKey": "4c1ba4a4c9ccced5676f746a7535d9c1b1306f6e"
+  }
+}

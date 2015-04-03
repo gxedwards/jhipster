@@ -1,0 +1,19 @@
+{
+    "demoApp": {
+        "study" : {
+            "home": {
+                "title": "Studys",
+                "createLabel": "Créer un nouveau Study",
+                "createOrEditLabel": "Créer ou éditer un Study"
+            },
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Study {{ id }} ?"
+            },
+            "detail": {
+                "title": "Study"
+            },
+            "study_name": "Study_name"
+        }
+    }
+}
+
