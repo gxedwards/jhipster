@@ -1,16 +1,19 @@
 'use strict';
-
+/*
+ This is using the controller As syntax so we are not embedding the $scope
+ */
 angular.module('demoApp')
-    .controller('UsersController', function ($scope, User) {
-        $scope.users = [];
-        $scope.loadAll = function() {
-            User.query({page: $scope.page, per_page: 20}, function(result, headers) {
-                $scope.users = result;
+    .controller('UsersController', function (User) {
+        var vm = this;
+        vm.users = [];
+        vm.loadAll = function() {
+            User.query({page: vm.page, per_page: 20}, function(result, headers) {
+                vm.users = result;
             });
         };
-        $scope.loadPage = function(page) {
-            $scope.page = page;
-            $scope.loadAll();
+        vm.loadPage = function(page) {
+            vm.page = page;
+            vm.loadAll();
         };
-        $scope.loadAll();
+        vm.loadAll();
     });

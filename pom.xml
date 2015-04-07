@@ -45,7 +45,7 @@
         <run.addResources>false</run.addResources>
         <sonar-maven-plugin.version>2.3</sonar-maven-plugin.version>
         <swagger-springmvc.version>0.9.5</swagger-springmvc.version>
-        <usertype-core.version>3.2.0.GA</usertype-core.version>
+        <usertype-core.version>3.2.0.GA</usertype-core.version>        
     </properties>
 
     <dependencies>
@@ -566,6 +566,8 @@
                 <dependency>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-tomcat</artifactId>
+                    <!--  This will remove tomcat from  -->
+                    <scope>provided</scope>
                 </dependency>
             </dependencies>
         </profile>

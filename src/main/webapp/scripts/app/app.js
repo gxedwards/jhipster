@@ -45,23 +45,24 @@ angular.module('demoApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             }
         };
     })
-    
+    // Create an interceptor that will be injected into the http calls. This injects the authentication token
     .factory('authInterceptor', function ($rootScope, $q, $location, localStorageService) {
+        // interceptors can be done on the request, response, request error or response error.
         return {
             // Add authorization token to headers
             request: function (config) {
                 config.headers = config.headers || {};
                 var token = localStorageService.get('token');
-                
+
                 if (token && token.expires && token.expires > new Date().getTime()) {
                   config.headers['x-auth-token'] = token.token;
                 }
-                
+
                 return config;
             }
         };
     })
-    
+
     .config(function ($stateProvider, $urlRouterProvider, $httpProvider, $locationProvider, $translateProvider, tmhDynamicLocaleProvider, httpRequestInterceptorCacheBusterProvider) {
 
         //Cache everything except rest api requests
@@ -90,6 +91,7 @@ angular.module('demoApp', ['LocalStorageModule', 'tmh.dynamicLocale',
             }
         });
 
+        // add the interceptor into the http request.
         $httpProvider.interceptors.push('authInterceptor');
 
         // Initialize angular-translate

@@ -13,9 +13,24 @@ angular.module('demoApp')
                 views: {
                     'content@': {
                         templateUrl: 'scripts/app/admin/users/users.html',
-                        controller: 'UsersController'
+                        controller: 'UsersController as userVM'
                     }
                 }
 
+            })
+            .state('userDetail', {
+                parent: 'admin',
+                url: '/users/:id',
+                data: {
+                    roles: ['ROLE_USER'],
+                    pageTitle: 'User Detail'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'scripts/app/admin/users/users-detail.html',
+                        controller: 'UsersDetailController'
+                    }
+                }
             });
+
     });
