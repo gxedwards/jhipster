@@ -4,7 +4,7 @@ angular.module('demoApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('register', {
-                parent: 'account',
+                parent: 'anon',
                 url: '/register',
                 data: {
                     roles: [],

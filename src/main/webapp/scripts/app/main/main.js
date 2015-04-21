@@ -7,7 +7,8 @@ angular.module('demoApp')
                 parent: 'site',
                 url: '/',
                 data: {
-                    roles: []
+                    // forcing the user to login
+                    roles: ['ROLE_USER']
                 },
                 views: {
                     'content@': {

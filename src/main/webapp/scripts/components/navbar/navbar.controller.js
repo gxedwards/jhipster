@@ -6,8 +6,12 @@ angular.module('demoApp')
         $scope.isInRole = Principal.isInRole;
         $scope.$state = $state;
 
+        Principal.identity().then(function(account) {
+            $scope.account = account;
+        });
+
         $scope.logout = function () {
             Auth.logout();
-            $state.go('home');
+            $state.go('login');
         };
     });

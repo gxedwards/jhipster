@@ -4,10 +4,10 @@ angular.module('demoApp')
     .config(function ($stateProvider) {
         $stateProvider
             .state('login', {
-                parent: 'account',
+                parent: 'anon',
                 url: '/login',
                 data: {
-                    roles: [], 
+                    roles: [],
                     pageTitle: 'login.title'
                 },
                 views: {

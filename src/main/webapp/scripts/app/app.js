@@ -7,11 +7,15 @@ angular.module('demoApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         $rootScope.ENV = ENV;
         $rootScope.VERSION = VERSION;
         $rootScope.$on('$stateChangeStart', function (event, toState, toStateParams) {
+            console.log('State change start');
             $rootScope.toState = toState;
             $rootScope.toStateParams = toStateParams;
 
             if (Principal.isIdentityResolved()) {
+                console.log("Principal Entity NOT resolved")
                 Auth.authorize();
+            } else {
+                console.log("Principal Entity IS resolved")
             }
 
             // Update the language
@@ -68,7 +72,11 @@ angular.module('demoApp', ['LocalStorageModule', 'tmh.dynamicLocale',
         //Cache everything except rest api requests
         httpRequestInterceptorCacheBusterProvider.setMatchlist([/.*api.*/, /.*protected.*/], true);
 
+        // if the path doesn't match any of the urls you configured
+        // otherwise will take care of routing the user to the specified url
         $urlRouterProvider.otherwise('/');
+
+        // Anon to give a root state for anon login
         $stateProvider.state('site', {
             'abstract': true,
             views: {
@@ -89,7 +97,23 @@ angular.module('demoApp', ['LocalStorageModule', 'tmh.dynamicLocale',
                     return $translate.refresh();
                 }]
             }
-        });
+        }).state ('anon', {
+                'abstract': true,
+                resolve: {
+                    authorize: ['Auth',
+                        function (Auth) {
+                            return Auth.authorize();
+                        }
+                    ],
+                    translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
+                        $translatePartialLoader.addPart('global');
+                        $translatePartialLoader.addPart('language');
+                        return $translate.refresh();
+                    }]
+                }
+            }
+
+        );
 
         // add the interceptor into the http request.
         $httpProvider.interceptors.push('authInterceptor');

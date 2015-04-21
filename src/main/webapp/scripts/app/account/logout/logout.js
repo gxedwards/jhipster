@@ -9,11 +9,6 @@ angular.module('demoApp')
                 data: {
                     roles: []
                 },
-                views: {
-                    'content@': {
-                        templateUrl: 'scripts/app/main/main.html',
-                        controller: 'LogoutController'
-                    }
-                }
+                controller: 'LogoutController'
             });
     });
