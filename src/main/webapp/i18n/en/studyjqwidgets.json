@@ -1,0 +1,18 @@
+{
+    "demoApp": {
+        "studyJQWidgets" : {
+            "home": {
+                "title": "Studys (JQWidgets)",
+                "createLabel": "Create a new Study",
+                "createOrEditLabel": "Create or edit a Study"
+            },
+            "delete": {
+                "question": "Are you sure you want to delete Study {{ id }}?"
+            },
+            "detail": {
+                "title": "Study"
+            },
+            "study_name": "Study_name"
+        }
+    }
+}

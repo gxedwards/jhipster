@@ -7,6 +7,7 @@
             "entities": {
                 "main": "Entities",
                 "study": "Study",
+                "studyJQWidgets": "Study (JQWidgets)",
                 "additionalEntity": "JHipster will add addtional entities"
             },
             "account": {
