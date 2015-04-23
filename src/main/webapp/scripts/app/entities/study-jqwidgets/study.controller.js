@@ -3,30 +3,15 @@
 angular.module('demoApp')
     .controller('StudyJQWidgetsController', function ($scope, Study, ParseLinks) {
 
-        $scope.createGrid = false;
+        $scope.createGrid = true;
 
         $scope.loadAll = function() {
             Study.query({page: $scope.page, per_page: 20}, function(result, headers) {
                 $scope.studys = result;
 
-                $scope.source =
-                {
-                    datatype: "json",
-                    localdata: result
-                };
-
-                // grid settings
-                $scope.gridSettings =
-                {
-                    source: $scope.source,
-                    width: "100%",
-                    columns: [
-                        { text: 'ID', datafield: 'id', width: 120 },
-                        { text: 'Study Name', datafield: 'study_name' }            ]
-                };
-
-
-                $scope.createGrid = true;
+                // used for the second grid
+                $scope.source.localdata = result;
+                $scope.dataAdapter.dataBind();
 
             });
         };
@@ -37,4 +22,26 @@ angular.module('demoApp')
                 { text: 'ID', datafield: 'id', width: 120 },
                 { text: 'Study Name', datafield: 'study_name' }
             ];
+
+        $scope.source =
+        {
+            datatype: "local",
+            localdata: []
+        };
+
+        $scope.dataAdapter = new $.jqx.dataAdapter($scope.source);
+        // grid settings
+        $scope.gridSettings =
+        {
+            source: $scope.dataAdapter,
+            width: "100%",
+            theme: 'metrodark',
+            columns: [
+                { text: 'ID', datafield: 'id', width: 120 },
+                { text: 'Study Name', datafield: 'study_name' }            ]
+        };
+
+
+        $scope.createGrid = true;
+
     });
